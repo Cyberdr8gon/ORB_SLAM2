@@ -25,6 +25,10 @@
 #include<string>
 #include<thread>
 #include<opencv2/core/core.hpp>
+#include <opencv2/core/core_c.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "Tracking.h"
 #include "FrameDrawer.h"
@@ -61,7 +65,7 @@ public:
     // Initialize the SLAM system. It launches the Local Mapping, Loop Closing and Viewer threads.
     System(const string &strVocFile, const string &strSettingsFile, const eSensor sensor, const bool bUseViewer = true);
 
-    // Proccess the given stereo frame. Images must be synchronized and rectified.
+    // Process the given stereo frame. Images must be synchronized and rectified.
     // Input images: RGB (CV_8UC3) or grayscale (CV_8U). RGB is converted to grayscale.
     // Returns the camera pose (empty if tracking fails).
     cv::Mat TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight, const double &timestamp);
